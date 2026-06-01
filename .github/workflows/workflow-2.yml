@@ -1,9 +1,9 @@
-name: Workflow 2
+name: "Workflow 2"
 
 on:
-    workflow_dispatch:
-        inputs:
-            workflows: ["Workflow 1"]
+    workflow_run:
+        workflows: ["Workflow 1"]
+        types: [completed]
 
 jobs:
     workflow2-download-artifact-from-w1:
