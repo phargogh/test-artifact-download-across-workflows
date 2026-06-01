@@ -17,4 +17,7 @@ jobs:
                 run-id: ${{ github.event.workflow_run.id }}
 
             - name: Print file contents
-              run: cat my_file.txt
+              run: |
+                  set -ex
+                  find .
+                  cat my_file.txt/*
