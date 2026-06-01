@@ -1,0 +1,20 @@
+name: Workflow 2
+
+on:
+    workflow_dispatch:
+        inputs:
+            workflows: ["Workflow 1"]
+
+jobs:
+    workflow2-download-artifact-from-w1:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Fetch file
+              uses: actions/download-artifact@v8
+              with:
+                path: my_file.txt
+                github-token: ${{ secrets.GITHUB_TOKEN }}
+                run-id: ${{ github.event.workflow_run.id }}
+
+            - name: Print file contents
+              run: cat my_file.txt

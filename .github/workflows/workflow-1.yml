@@ -1,0 +1,23 @@
+name: "Workflow 1"
+
+on:
+    # trigger on each push to main.
+    # In reality, I'd want this to be something else like `pull_request`
+    # but `push` is fine for testing the artifact-passing funcitonality.
+    push
+
+permissions:
+    contents: read
+
+jobs:
+    workflow1-upload-artifact:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Write a file
+              run: echo "hello, world!" > my_file.txt
+
+            - name: Upload artifact
+              uses: actions/upload-artifact@v7
+              with:
+                  path: my_file.txt
+
